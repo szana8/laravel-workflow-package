@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Orders;
+use Exception;
 use Illuminate\Http\Request;
+use szana8\Laraflow\Exceptions\LaraflowValidatorException;
 
 class OrdersController extends Controller
 {
@@ -71,10 +73,17 @@ class OrdersController extends Controller
      */
     public function update(Orders $orders, $status_id)
     {
-        $orders->transition($status_id);
-        $orders->save();
+        try{
+            $orders->transition($status_id);
+            $msg = $orders->save();
 
-        return redirect()->back();
+            return redirect()->back();
+        } catch(LaraflowValidatorException $e) {
+            return redirect()->back()->withErrors($e->errors());
+        }
+
+
+        //return redirect()->back();
     }
 
     /**
