@@ -43,14 +43,15 @@ return [
                 'text' => 'Start Progress',
                 'extra' => [],
                 'callbacks' => [
-                    /*  'pre' => [
-                        'App\\TestPreCallback'
+                    'pre' => [
+                        //'App\\TestPreCallback'
                     ],
-                    'post' => [
+                    /*'post' => [
                         'App\\TestPostCallback'
-                    ] */],
+                    ] */
+                ],
                 'validators' => [
-                      [
+                    [
                         'order_number' => 'numeric'
                     ]
                 ]
@@ -138,29 +139,11 @@ return [
     | before the status change. You can use ony Laravel validators.
     |
     */
-    'validators' => [
-        'required' => [
-            'name' => 'Field required',
-            'description' => 'The field under validation must be present in the input data and not empty.',
-            'validator' => 'required',
-        ],
-
-        'string' => [
-            'name' => 'Field must be string',
-            'description' => 'The field under validation must be a string. If you would like to allow the field to also be null, you should assign the nullable rule to the field.',
-            'validator' => 'string',
-        ],
-
-        'numeric' => [
-            'name' => 'Field must be a number',
-            'description' => 'The field under validation must be numeric.',
-            'validator' => 'numeric',
-        ],
-
-        'timezone' => [
+    'custom_validators' => [
+        'TestValidator' => [
             'name' => 'Field must be a valid timezone',
             'description' => 'The field under validation must be a valid timezone identifier according to the  timezone_identifiers_list PHP function.',
-            'validator' => 'timezone',
+            'validator' => 'App\Validators\TestValidator',
         ]
     ],
 

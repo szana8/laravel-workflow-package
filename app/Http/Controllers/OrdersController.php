@@ -9,6 +9,11 @@ use szana8\Laraflow\Exceptions\LaraflowValidatorException;
 
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -73,12 +78,12 @@ class OrdersController extends Controller
      */
     public function update(Orders $orders, $status_id)
     {
-        try{
+        try {
             $orders->transition($status_id);
             $msg = $orders->save();
 
             return redirect()->back();
-        } catch(LaraflowValidatorException $e) {
+        } catch (LaraflowValidatorException $e) {
             return redirect()->back()->withErrors($e->errors());
         }
 
