@@ -166,8 +166,6 @@ return [
          * Package Service Providers...
          */
 
-        szana8\Laraflow\LaraflowServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
