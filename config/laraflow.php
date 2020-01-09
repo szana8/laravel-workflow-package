@@ -52,7 +52,7 @@ return [
                 ],
                 'validators' => [
                     [
-                        'order_number' => 'numeric'
+                       // 'order_number' => 'numeric'
                     ]
                 ]
             ],
