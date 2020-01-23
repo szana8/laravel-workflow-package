@@ -4,17 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use szana8\Laraflow\Traits\Flowable;
+use szana8\LaraflowGo\Traits\GoJsAble;
 
 class Orders extends Model
 {
-    use Flowable;
+    use Flowable, GoJsAble;
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = ['possibleTransactions', 'actualStepName', 'flowHistory'];
+    protected $appends = ['possibleTransactions', 'actualStepName', 'flowHistory', 'goJsObject', 'nodeDataArray', 'validators', 'callbacks'];
 
     /**
      * Return the possible transitions list.
@@ -48,6 +49,6 @@ class Orders extends Model
 
     public function getLaraflowStates()
     {
-        return config('laraflow.configuration');
+        return config('laraflow.default');
     }
 }

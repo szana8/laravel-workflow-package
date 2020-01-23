@@ -12,55 +12,60 @@ return [
     |
     */
 
-    'configuration' => [
+    'default' => [
         'property_path' => 'status',
         'steps' => [
             [
                 'text' => 'Open',
-                'extra' => []
-            ],
-            [
-                'text' => 'In Progress',
-                'extra' => []
-            ],
-            [
-                'text' => 'Resolved',
-                'extra' => []
-            ],
-            [
-                'text' => 'Reopen',
-                'extra' => []
-            ],
-            [
-                'text' => 'Closed',
-                'extra' => []
-            ],
-        ],
-        'transitions' => [
-            [
-                'from' => 0,
-                'to' => 1,
-                'text' => 'Start Progress',
-                'extra' => [],
-                'callbacks' => [
-                    'pre' => [
-                        //'App\\TestPreCallback'
-                    ],
-                    /*'post' => [
-                        'App\\TestPostCallback'
-                    ] */
-                ],
-                'validators' => [
-                    [
-                       // 'order_number' => 'numeric'
-                    ]
+                'extra' => [
+                    'color' => 'primary',
+                    'category' => 'primary',
+                    'loc' => '-72.8125 139'
                 ]
             ],
             [
-                'from' => 1,
-                'to' => 0,
-                'text' => 'Stop Progress',
-                'extra' => [],
+                'text' => 'In Progress',
+                'extra' => [
+                    'color' => 'success',
+                    'category' => 'warning',
+                    'loc' => '-74.8125 452'
+                ]
+            ],
+            [
+                'text' => 'Resolved',
+                'extra' => [
+                    'color' => 'success',
+                    'category' => 'success',
+                    'loc' => '280.1875 140'
+                ]
+            ],
+            [
+                'text' => 'Reopen',
+                'extra' => [
+                    'color' => 'primary',
+                    'category' => 'primary',
+                    'loc' => '433.1875 535'
+                ]
+            ],
+            [
+                'text' => 'Closed',
+                'extra' => [
+                    'color' => 'success',
+                    'category' => 'success',
+                    'loc' => '54.1875 299',
+                ]
+            ]
+        ],
+        'transitions' => [
+            [
+                'from' =>  0,
+                'to' => 1,
+                'text' => 'Start Progress',
+                'extra' => [
+                    'fromPort' => 'B',
+                    'toPort' => 'T',
+                    'points' => [],
+                ],
                 'callbacks' => [
                     'pre' => [],
                     'post' => []
@@ -69,9 +74,28 @@ return [
             ],
             [
                 'from' => 1,
-                'to' => 2,
+                'to' => 0,
+                'text' => 'Stop Progress',
+                'extra' => [
+                    'fromPort' => 'L',
+                    'toPort' => 'L',
+                    'points' => []
+                ],
+                'callbacks' => [
+                    'pre' => [],
+                    'post' => []
+                ],
+                'validators' => []
+            ],
+            [
+                'from' => 1,
+                'to' =>  2,
                 'text' => 'Resolve Issue',
-                'extra' => [],
+                'extra' => [
+                    'fromPort' => 'R',
+                    'toPort' => 'L',
+                    'points' => []
+                ],
                 'callbacks' => [
                     'pre' => [],
                     'post' => []
@@ -80,9 +104,13 @@ return [
             ],
             [
                 'from' => 2,
-                'to' => 3,
+                'to' =>  3,
                 'text' => 'Reopen Issue',
-                'extra' => [],
+                'extra' => [
+                    'fromPort' => 'B',
+                    'toPort' => 'T',
+                    'points' => []
+                ],
                 'callbacks' => [
                     'pre' => [],
                     'post' => []
@@ -91,7 +119,7 @@ return [
             ],
             [
                 'from' => 3,
-                'to' => 2,
+                'to' =>  2,
                 'text' => 'Resolve Issue',
                 'extra' => [
                     'fromPort' => 'R',
@@ -106,9 +134,13 @@ return [
             ],
             [
                 'from' => 1,
-                'to' => 4,
+                'to' =>  4,
                 'text' => 'Close Issue',
-                'extra' => [],
+                'extra' => [
+                    'fromPort' => 'R',
+                    'toPort' => 'L',
+                    'points' => []
+                ],
                 'callbacks' => [
                     'pre' => [],
                     'post' => []
@@ -117,15 +149,20 @@ return [
             ],
             [
                 'from' => 3,
-                'to' => 4,
+                'to' =>  4,
                 'text' => 'Close Issue',
-                'extra' => [],
+                'extra' => [
+                    'fromPort' => 'R',
+                    'toPort' => 'L',
+                    'points' => []
+                ],
                 'callbacks' => [
                     'pre' => [],
                     'post' => []
                 ],
                 'validators' => []
             ],
+
         ],
     ],
 

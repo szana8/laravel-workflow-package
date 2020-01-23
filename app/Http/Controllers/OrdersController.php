@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Orders;
+use App\Workflow;
 use Exception;
 use Illuminate\Http\Request;
 use szana8\Laraflow\Exceptions\LaraflowValidatorException;
@@ -21,9 +22,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::all();
+        $orders = Orders::find(1);
 
-        return view('orders', ['orders' => $orders]);
+        return view('orders', ['orders' => $orders, 'laraflow' => $orders]);
     }
 
     /**
